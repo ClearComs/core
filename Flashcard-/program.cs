@@ -30,8 +30,8 @@ public class Flashcard
 
         public string reset_top()
     {
-        top = definition;
-        bottom = word;
+        top = word;
+        bottom = definition;
         return top;
     }
 }
@@ -119,4 +119,5 @@ class Program
         Console.WriteLine(navigator.GetPrevious().top);  // Two
         Console.WriteLine(navigator.GetCurrent().top);   // Two
     }
+
 }
