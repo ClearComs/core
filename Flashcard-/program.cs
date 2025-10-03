@@ -113,7 +113,7 @@ class Program
 
         var navigator = new FlashcardNavigator(flashcards_nr);
         Console.WriteLine(navigator.GetFirst().top);     // One
-		Console.WriteLine(navigator.GetFirst().flip_top());     // One
+		Console.WriteLine(navigator.GetFirst().flip_top());     // wow
         Console.WriteLine(navigator.GetNext().top);      // Two
         Console.WriteLine(navigator.GetNext().top);      // Three
         Console.WriteLine(navigator.GetPrevious().top);  // Two
@@ -121,3 +121,4 @@ class Program
     }
 
 }
+
