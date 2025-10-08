@@ -55,5 +55,5 @@ The project integrates **voice recognition**, **quizzes**, and **flashcards** in
 2. STT and TTS demo:
    ```bash
    cd STT-TTS_with_example_gui
-   python3 gui.py
+   python3 gui.py #run gui.py
 
