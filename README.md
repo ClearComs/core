@@ -52,4 +52,8 @@ The project integrates **voice recognition**, **quizzes**, and **flashcards** in
    ```bash
    git clone https://github.com/ClearComs/core.git
    cd core
+2. STT and TTS demo:
+   ```bash
+   cd STT-TTS_with_example_gui
+   run gui.py
 
