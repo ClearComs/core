@@ -1,0 +1,11 @@
+Question,Option 1,Option 2,Option 3,Option 4,Correct Answer
+What does 'CAVOK' mean in a METAR?,"Ceiling and Visibility OK: No significant weather, ?10 km visibility, no clouds below 5000 ft","Clear skies above 10,000 ft",Visibility less than 5 km but no clouds,Only scattered clouds with visibility OK,"Ceiling and Visibility OK: No significant weather, ?10 km visibility, no clouds below 5000 ft"
+What does 'VRB02KT' indicate?,Wind is calm,Wind is variable at 2 knots,Wind is gusting up to 2 knots,Wind is from 020° at 2 knots,Wind is variable at 2 knots
+What is the meaning of 'NOSIG' in a METAR?,No significant clouds,No significant icing,No significant weather changes expected,No signal received,No significant weather changes expected
+"In a TAF, what does 'BECMG 1818/1820' indicate?",Becoming between 18:00–20:00 UTC,Becoming temporary from 18:00 to 20:00,Steady conditions until 20:00,Ceiling lowering from 18:00 to 20:00,Becoming between 18:00–20:00 UTC
+What cloud type is indicated by 'CB' in a METAR or TAF?,Cirrostratus,Cumulonimbus,Stratocumulus,Cumulus benignus,Cumulonimbus
+What does 'WS TKOF RWY19' mean in a TAF?,Windshear on takeoff runway 19,Wet surface on runway 19,Wind from 190°,Warning sign on taxiway 19,Windshear on takeoff runway 19
+What is a SIGMET issued for?,Changes in runway lighting,Pilot communications,Significant meteorological hazards like turbulence or thunderstorms,Normal flight updates,Significant meteorological hazards like turbulence or thunderstorms
+What is 'FEW025' in a METAR?,Few clouds at 250 ft,Few clouds at 2500 ft,Cloud base at 25000 ft,Fully overcast at 2500 ft,Few clouds at 2500 ft
+"In the code 'TAF ENGM 051200Z 0512/0612', what does the validity period mean?",From 5th at 12:00 to 6th at 12:00 UTC,From 12:00 to 12:00 local time,Forecast is valid for 5 days,Issued at 12:00 for 6 days,From 5th at 12:00 to 6th at 12:00 UTC
+What is indicated by 'Q1012' in a METAR?,Wind speed of 1012 knots,Temperature 10.12°C,Sea-level pressure of 1012 hPa,Visibility of 1012 meters,Sea-level pressure of 1012 hPa
