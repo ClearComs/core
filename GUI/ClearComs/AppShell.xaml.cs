@@ -8,7 +8,7 @@ namespace ClearComs
     {
         public AppShell()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             var currentTheme = Application.Current!.RequestedTheme;
             ThemeSegmentedControl.SelectedIndex = currentTheme == AppTheme.Light ? 0 : 1;
         }

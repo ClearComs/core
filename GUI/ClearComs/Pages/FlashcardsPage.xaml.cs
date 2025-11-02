@@ -1,9 +1,10 @@
-namespace ClearComs.Pages;
-
-public partial class FlashcardsPage : ContentPage
+namespace ClearComs.Views
 {
-    public FlashcardsPage()
+    public partial class FlashcardsPage : ContentPage
     {
-        InitializeComponent();
+        public FlashcardsPage()
+        {
+            InitializeComponent();
+        }
     }
 }

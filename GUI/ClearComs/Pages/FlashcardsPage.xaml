@@ -1,9 +1,50 @@
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ClearComs.Pages.FlashcardsPage"
-             Title="Flashcards">
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClearComs.Views.FlashcardsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:ClearComs.ViewModels"
+    Title="Flashcards">
 
-    <VerticalStackLayout Padding="20">
-        <Label Text="Flashcards Page" FontSize="24"/>
-    </VerticalStackLayout>
+    <ContentPage.BindingContext>
+        <vm:FlashcardsViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid Padding="20" RowDefinitions="Auto,*,Auto" RowSpacing="16">
+
+        <!-- Top: counter -->
+        <HorizontalStackLayout Grid.Row="0" HorizontalOptions="Center">
+            <Label Text="{Binding CounterText}" FontSize="16" />
+        </HorizontalStackLayout>
+
+        <!-- Middle: card display -->
+        <Frame
+            Grid.Row="1"
+            CornerRadius="20"
+            HasShadow="True"
+            Padding="30"
+            VerticalOptions="CenterAndExpand"
+            BackgroundColor="#f4f4f4">
+            <ScrollView>
+                <Label
+                    Text="{Binding DisplayText}"
+                    FontSize="24"
+                    HorizontalTextAlignment="Center"
+                    VerticalTextAlignment="Center"
+                    TextColor="Black" />
+            </ScrollView>
+        </Frame>
+
+        <!-- Bottom: buttons -->
+        <HorizontalStackLayout
+            Grid.Row="2"
+            Spacing="20"
+            HorizontalOptions="Center">
+            <Button Text="Prev" Command="{Binding PrevCommand}" />
+            <Button Text="Flip" Command="{Binding FlipCommand}" />
+            <Button Text="Next" Command="{Binding NextCommand}" />
+            <Button Text="Shuffle" Command="{Binding ShuffleCommand}" />
+        </HorizontalStackLayout>
+
+    </Grid>
 </ContentPage>

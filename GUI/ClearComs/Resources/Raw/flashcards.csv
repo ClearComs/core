@@ -1,0 +1,21 @@
+front,back
+Aileron,Control surface used to roll the aircraft.
+Elevator,Control surface that controls pitch.
+Rudder,Control surface that controls yaw.
+Flaps,Extendable surfaces that increase lift and drag for landing.
+Spoilers,Surfaces that reduce lift and increase drag to help descend or slow down.
+Trim Tab,Small adjustable surface that helps maintain level flight without constant control input.
+Fuselage,The main body of the aircraft that holds crew and passengers.
+Empennage,The tail section of an aircraft providing stability and control.
+Cockpit,The compartment where the pilot and co-pilot control the aircraft.
+Throttle,Lever used to control engine power.
+Mixture Control,Regulates the fuel-to-air ratio in piston engines.
+Altimeter,Instrument that measures altitude using air pressure.
+Airspeed Indicator,Displays the speed of the aircraft relative to the surrounding air.
+Attitude Indicator,Shows the aircraft’s orientation relative to the horizon.
+Heading Indicator,Displays the aircraft’s direction relative to magnetic north.
+Vertical Speed Indicator,Shows the rate of climb or descent in feet per minute.
+Transponder,Radio device that sends identification and altitude to air traffic control.
+Pitot Tube,Instrument that measures airspeed by sensing air pressure.
+Stall,Loss of lift due to exceeding the critical angle of attack.
+Lift,The upward aerodynamic force that opposes weight and allows flight.
