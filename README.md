@@ -10,7 +10,8 @@ The project integrates **voice recognition**, **quizzes**, and **flashcards** in
 ### 🖥️ Mainpage UI  
 - Simple, modular navigation system.  
 - Built with **.NET MAUI controls**, allowing multi-platform support.  
-- Acts as the central hub to access all modules (Quiz, Flashcards, Voice-to-Text).  
+- Acts as the central hub to access all modules (Quiz, Flashcards, Voice-to-Text).
+- 
 
 ### 🎤 Voice-to-Text (Speech Recognition)  
 - Uses **OpenAI Whisper** for accurate speech-to-text conversion.  
@@ -52,6 +53,13 @@ The project integrates **voice recognition**, **quizzes**, and **flashcards** in
    ```bash
    git clone https://github.com/ClearComs/core.git
    cd core
+   
+   To run the solution, Open in MS Visual Studio
+   open solution
+   core/GUI/ClearComs.sln
+   And here you can interact witht the quiz and flashcard feature
+
+   
 2. STT and TTS demo:
    ```bash
    cd STT-TTS_with_example_gui
