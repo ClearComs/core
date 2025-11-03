@@ -33,6 +33,9 @@ namespace ClearComs.ViewModels
         [ObservableProperty] private string optionDColor = "#2196F3";
         [ObservableProperty] private int score = 0;
 
+        [ObservableProperty] private string scoreDisplay = "Score: 0";
+
+
         private QuizQuestion Current => _questions[_currentIndex];
 
         public ICommand AnswerCommand { get; }
@@ -91,14 +94,17 @@ namespace ClearComs.ViewModels
             var page = Application.Current?.Windows.FirstOrDefault()?.Page;
 
             bool isCorrect = Current.IsCorrect(selected);
+
             if (isCorrect)
             {
                 Score++;
+                ScoreDisplay = $"Score: {Score}";
                 SetOptionColor(choice, "#4CAF50"); // green
             }
             else
             {
                 SetOptionColor(choice, "#F44336"); // red
+
                 // highlight correct one
                 if (Current.Answer == Current.OptionA) OptionAColor = "#4CAF50";
                 if (Current.Answer == Current.OptionB) OptionBColor = "#4CAF50";
@@ -112,6 +118,7 @@ namespace ClearComs.ViewModels
                 "OK"
             )!;
         }
+
 
         private async void OnNext()
         {
@@ -127,6 +134,7 @@ namespace ClearComs.ViewModels
                 )!;
                 _currentIndex = 0;
                 Score = 0;
+                ScoreDisplay = "Score: 0";
             }
 
             DisplayCurrentQuestion();
