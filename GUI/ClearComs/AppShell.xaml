@@ -31,9 +31,17 @@
         Title="Flashcards"
         ContentTemplate="{DataTemplate views:FlashcardsPage}"
         Route="flashcards" />
+    
+    <ShellContent
+        Title="Quizzes"
+        Icon="{StaticResource IconProjects}"
+        ContentTemplate="{DataTemplate views:QuizPage}"
+        Route="quizzes" />
 
 
-        <!-- ✅ Correct syntax for .NET 9 -->
+
+
+    <!-- ✅ Correct syntax for .NET 9 -->
     <Shell.FlyoutFooter>
         <Grid Padding="15">
             <sf:SfSegmentedControl x:Name="ThemeSegmentedControl"

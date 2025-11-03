@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClearComs.Views.QuizPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:ClearComs.ViewModels"
+    Title="Quiz">
+
+    <!-- Bind this page to the QuizViewModel -->
+    <ContentPage.BindingContext>
+        <vm:QuizViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid Padding="20" RowDefinitions="Auto,*,Auto" RowSpacing="16">
+
+        <!-- Question Counter -->
+        <Label Grid.Row="0"
+               Text="{Binding QuestionCounter}"
+               FontSize="18"
+               HorizontalOptions="Center" />
+
+        <!-- Question Card -->
+        <Border Grid.Row="1"
+                StrokeThickness="1"
+                Stroke="#cccccc"
+                BackgroundColor="#f7f7f7"
+                Padding="20"
+                StrokeShape="RoundRectangle 10">
+            <VerticalStackLayout Spacing="20" VerticalOptions="Center">
+
+                <Label Text="{Binding CurrentQuestionText}"
+                       FontSize="22"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"
+                       LineBreakMode="WordWrap" />
+
+                <!-- Options -->
+                <Button Text="{Binding OptionA}" 
+                        Command="{Binding AnswerCommand}" 
+                        CommandParameter="A"
+                        BackgroundColor="{Binding OptionAColor}"
+                        TextColor="White"
+                        CornerRadius="8" />
+
+                <Button Text="{Binding OptionB}" 
+                        Command="{Binding AnswerCommand}" 
+                        CommandParameter="B"
+                        BackgroundColor="{Binding OptionBColor}"
+                        TextColor="White"
+                        CornerRadius="8" />
+
+                <Button Text="{Binding OptionC}" 
+                        Command="{Binding AnswerCommand}" 
+                        CommandParameter="C"
+                        BackgroundColor="{Binding OptionCColor}"
+                        TextColor="White"
+                        CornerRadius="8" />
+
+                <Button Text="{Binding OptionD}" 
+                        Command="{Binding AnswerCommand}" 
+                        CommandParameter="D"
+                        BackgroundColor="{Binding OptionDColor}"
+                        TextColor="White"
+                        CornerRadius="8" />
+
+            </VerticalStackLayout>
+        </Border>
+
+        <!-- Bottom Controls -->
+        <Button Grid.Row="2"
+                Text="{Binding NextButtonText}"
+                Command="{Binding NextCommand}"
+                IsVisible="{Binding IsNextVisible}"
+                HorizontalOptions="Center"
+                WidthRequest="120" />
+
+    </Grid>
+</ContentPage>

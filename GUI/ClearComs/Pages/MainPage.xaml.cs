@@ -1,4 +1,5 @@
-﻿namespace ClearComs.Pages
+﻿using ClearComs.Views;
+namespace ClearComs.Pages
 {
     public partial class MainPage : ContentPage
     {
