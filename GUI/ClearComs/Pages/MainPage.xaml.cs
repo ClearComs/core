@@ -23,7 +23,8 @@ namespace ClearComs.Pages
 
         private async void OnCommunicationClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new CommunicationPage());
+            await Shell.Current.GoToAsync("///communication");
+
         }
 
         protected override async void OnAppearing()

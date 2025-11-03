@@ -81,10 +81,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Pages\CommunicationPage.xaml">
+	  <MauiXaml Update="Pages\FlashcardsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\FlashcardsPage.xaml">
+	  <MauiXaml Update="Views\CommunicationTrainerPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\QuizPage.xaml">

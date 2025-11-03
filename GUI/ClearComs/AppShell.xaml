@@ -38,6 +38,11 @@
         ContentTemplate="{DataTemplate views:QuizPage}"
         Route="quizzes" />
 
+    <ShellContent
+        Title="Communication Trainer"
+        Icon="{StaticResource IconProjects}"
+        ContentTemplate="{DataTemplate views:CommunicationTrainerPage}"
+        Route="communication" />
 
 
 
