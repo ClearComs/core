@@ -1,5 +1,4 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+
 
 import sqlite3
 import tkinter as tk
@@ -9,6 +8,9 @@ import tempfile
 import os
 import numpy as np
 import time
+import sys
+import subprocess
+import shutil
 
 # --- Optional deps (handle missing gracefully) ---
 try:
@@ -96,6 +98,82 @@ def speak_text_mac(text, rate=DEFAULT_TTS_RATE, voice=DEFAULT_TTS_VOICE):
         pass
     engine.say(text)
     engine.runAndWait()
+
+
+def speak_text(text, rate=DEFAULT_TTS_RATE, voice=DEFAULT_TTS_VOICE):
+    """Cross-platform TTS wrapper.
+    Tries pyttsx3 with an appropriate driver first, then falls back to system commands:
+      - macOS: `say`
+      - Windows: PowerShell / System.Speech
+      - Linux: `spd-say` or `espeak`
+    """
+    # Try pyttsx3 if available
+    if pyttsx3 is not None:
+        try:
+            driver = None
+            if sys.platform == "darwin":
+                driver = 'nsss'
+            elif sys.platform.startswith("win"):
+                driver = 'sapi5'
+            else:
+                # many Linux setups use espeak
+                driver = 'espeak'
+
+            # init engine with chosen driver when possible
+            try:
+                engine = pyttsx3.init(driverName=driver)
+            except Exception:
+                engine = pyttsx3.init()
+
+            if voice:
+                try:
+                    engine.setProperty('voice', voice)
+                except Exception:
+                    pass
+            try:
+                engine.setProperty('rate', rate)
+            except Exception:
+                pass
+
+            engine.say(text)
+            engine.runAndWait()
+            return
+        except Exception:
+            # fall through to system-level fallback
+            pass
+
+    # Fallback to system commands
+    try:
+        if sys.platform == "darwin":
+            # macOS built-in `say`
+            subprocess.run(["say", text], check=False)
+            return
+        elif sys.platform.startswith("win"):
+            # Use PowerShell's System.Speech
+            # Escape single quotes in text
+            safe = text.replace("'", "\\'")
+            cmd = f"Add-Type -AssemblyName System.Speech; (New-Object System.Speech.Synthesis.SpeechSynthesizer).Speak('{safe}')"
+            subprocess.run(["powershell", "-Command", cmd], check=False)
+            return
+        else:
+            # Linux: try spd-say then espeak
+            if shutil.which("spd-say"):
+                subprocess.run(["spd-say", text], check=False)
+                return
+            elif shutil.which("espeak"):
+                subprocess.run(["espeak", text], check=False)
+                return
+            else:
+                raise RuntimeError("No TTS backend available: install pyttsx3 or spd-say/espeak")
+    except Exception as e:
+        raise RuntimeError(f"TTS failed: {e}")
+
+
+def speak_text_mac(text):
+    """Backward-compatible wrapper kept for callers that expect speak_text_mac.
+    It delegates to the cross-platform speak_text implementation.
+    """
+    return speak_text(text)
 
 
 def record_audio(duration=5, samplerate=44100):
@@ -275,7 +353,7 @@ class FlashcardApp:
         def _run():
             try:
                 self._set_busy(True, "Processing...")
-                speak_text_mac(text)
+                speak_text(text)
             except Exception as e:
                 messagebox.showerror("TTS Error", str(e))
             finally:
