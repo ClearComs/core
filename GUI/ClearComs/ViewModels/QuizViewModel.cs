@@ -26,7 +26,7 @@ namespace ClearComs.ViewModels
         [ObservableProperty] private string nextButtonText = "Next";
         [ObservableProperty] private bool isNextVisible = false;
 
-        // 🎨 Colors and scoring
+        // Colors and scoring
         [ObservableProperty] private string optionAColor = "#2196F3";
         [ObservableProperty] private string optionBColor = "#2196F3";
         [ObservableProperty] private string optionCColor = "#2196F3";
@@ -51,8 +51,15 @@ namespace ClearComs.ViewModels
         private async Task LoadQuestions()
         {
             _questions = await QuizLoader.LoadFromPackageAsync();
-            if (_questions.Count > 0)
-                DisplayCurrentQuestion();
+
+            if (_questions is null || _questions.Count == 0)
+                return;
+
+            // Shuffle questions and shuffle answers for each question
+            ShuffleQuestionsAndAnswers();
+
+            _currentIndex = 0;
+            DisplayCurrentQuestion();
         }
 
         private void DisplayCurrentQuestion()
@@ -71,7 +78,7 @@ namespace ClearComs.ViewModels
             OptionAColor = OptionBColor = OptionCColor = OptionDColor = "#2196F3";
         }
 
-        private async void OnAnswerSelected(string? choice)
+        private void OnAnswerSelected(string? choice)
         {
             if (_answered || choice is null)
                 return;
@@ -91,8 +98,6 @@ namespace ClearComs.ViewModels
             if (selected is null)
                 return;
 
-            var page = Application.Current?.Windows.FirstOrDefault()?.Page;
-
             bool isCorrect = Current.IsCorrect(selected);
 
             if (isCorrect)
@@ -105,18 +110,14 @@ namespace ClearComs.ViewModels
             {
                 SetOptionColor(choice, "#F44336"); // red
 
-                // highlight correct one
-                if (Current.Answer == Current.OptionA) OptionAColor = "#4CAF50";
-                if (Current.Answer == Current.OptionB) OptionBColor = "#4CAF50";
-                if (Current.Answer == Current.OptionC) OptionCColor = "#4CAF50";
-                if (Current.Answer == Current.OptionD) OptionDColor = "#4CAF50";
+                // highlight correct one (Answer is the correct answer text; options were shuffled)
+                if (string.Equals(Current.Answer, Current.OptionA, StringComparison.Ordinal)) OptionAColor = "#4CAF50";
+                if (string.Equals(Current.Answer, Current.OptionB, StringComparison.Ordinal)) OptionBColor = "#4CAF50";
+                if (string.Equals(Current.Answer, Current.OptionC, StringComparison.Ordinal)) OptionCColor = "#4CAF50";
+                if (string.Equals(Current.Answer, Current.OptionD, StringComparison.Ordinal)) OptionDColor = "#4CAF50";
             }
 
-            await page?.DisplayAlert(
-                isCorrect ? "Correct!" : "Incorrect",
-                isCorrect ? $"{selected} is the right answer ✅" : $"Correct answer: {Current.Answer}",
-                "OK"
-            )!;
+            // Note: removed the DisplayAlert popup here to keep feedback inline (colors/score).
         }
 
 
@@ -132,9 +133,16 @@ namespace ClearComs.ViewModels
                     $"You’ve reached the end of the quiz.\n\nFinal Score: {Score} / {_questions.Count}",
                     "OK"
                 )!;
+
+                // reset and reshuffle for a new run
                 _currentIndex = 0;
                 Score = 0;
                 ScoreDisplay = "Score: 0";
+
+                if (_questions.Count > 0)
+                {
+                    ShuffleQuestionsAndAnswers();
+                }
             }
 
             DisplayCurrentQuestion();
@@ -148,6 +156,39 @@ namespace ClearComs.ViewModels
                 case "B": OptionBColor = color; break;
                 case "C": OptionCColor = color; break;
                 case "D": OptionDColor = color; break;
+            }
+        }
+
+        // ----- Utility: shuffling -----
+        private void ShuffleQuestionsAndAnswers()
+        {
+            // shuffle question order
+            Shuffle(_questions);
+
+            // for each question shuffle its options but keep Answer as the correct answer text
+            foreach (var q in _questions)
+            {
+                var options = new List<string> { q.OptionA, q.OptionB, q.OptionC, q.OptionD };
+                Shuffle(options);
+
+                q.OptionA = options[0];
+                q.OptionB = options[1];
+                q.OptionC = options[2];
+                q.OptionD = options[3];
+                // q.Answer remains unchanged (it contains the correct answer text)
+            }
+        }
+
+        private static void Shuffle<T>(IList<T> list)
+        {
+            if (list is null || list.Count <= 1)
+                return;
+
+            var rng = Random.Shared;
+            for (int i = list.Count - 1; i > 0; i--)
+            {
+                int j = rng.Next(i + 1);
+                (list[i], list[j]) = (list[j], list[i]);
             }
         }
     }
