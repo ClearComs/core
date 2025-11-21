@@ -10,41 +10,60 @@
         <vm:FlashcardsViewModel />
     </ContentPage.BindingContext>
 
-    <Grid Padding="20" RowDefinitions="Auto,*,Auto" RowSpacing="16">
+    <Grid Padding="16" RowDefinitions="*,Auto" ColumnDefinitions="*">
+        <!-- Card area -->
+        <Border
+            x:Name="CardFrame"
+            Grid.Row="0"
+            Margin="12"
+            BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}"
+            HorizontalOptions="Fill"
+            VerticalOptions="Center">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="12" />
+            </Border.StrokeShape>
+            <Grid x:Name="CardContainer" HeightRequest="300" WidthRequest="400">
+                <!-- Front -->
+                <Grid x:Name="FrontView" IsVisible="True" BackgroundColor="Transparent">
+                    <Label
+                        Text="{Binding CurrentCard.Front}"
+                        LineBreakMode="WordWrap"
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center"
+                        FontSize="24"
+                        Margin="18"
+                        TextColor="{AppThemeBinding Light={StaticResource DarkOnLightBackground}, Dark={StaticResource LightOnDarkBackground}}" />
+                </Grid>
 
-        <!-- Top: counter -->
-        <HorizontalStackLayout Grid.Row="0" HorizontalOptions="Center">
-            <Label Text="{Binding CounterText}" FontSize="16" />
-        </HorizontalStackLayout>
+                <!-- Back -->
+                <Grid x:Name="BackView" IsVisible="False" BackgroundColor="Transparent">
+                    <Label
+                        Text="{Binding CurrentCard.Back}"
+                        LineBreakMode="WordWrap"
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center"
+                        FontSize="20"
+                        Margin="18"
+                        TextColor="{AppThemeBinding Light={StaticResource DarkOnLightBackground}, Dark={StaticResource LightOnDarkBackground}}" />
+                </Grid>
+            </Grid>
 
-        <!-- Middle: card display -->
-        <Frame
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnCardTapped" NumberOfTapsRequired="1" />
+            </Border.GestureRecognizers>
+        </Border>
+
+        <!-- Controls -->
+        <StackLayout
             Grid.Row="1"
-            CornerRadius="20"
-            HasShadow="True"
-            Padding="30"
-            VerticalOptions="CenterAndExpand"
-            BackgroundColor="#f4f4f4">
-            <ScrollView>
-                <Label
-                    Text="{Binding DisplayText}"
-                    FontSize="24"
-                    HorizontalTextAlignment="Center"
-                    VerticalTextAlignment="Center"
-                    TextColor="Black" />
-            </ScrollView>
-        </Frame>
-
-        <!-- Bottom: buttons -->
-        <HorizontalStackLayout
-            Grid.Row="2"
-            Spacing="20"
-            HorizontalOptions="Center">
+            Orientation="Horizontal"
+            HorizontalOptions="Center"
+            Spacing="12"
+            Padding="6">
             <Button Text="Prev" Command="{Binding PrevCommand}" />
-            <Button Text="Flip" Command="{Binding FlipCommand}" />
+            <Label Text="{Binding CounterText}" VerticalOptions="Center" HorizontalOptions="Center" />
             <Button Text="Next" Command="{Binding NextCommand}" />
             <Button Text="Shuffle" Command="{Binding ShuffleCommand}" />
-        </HorizontalStackLayout>
-
+        </StackLayout>
     </Grid>
 </ContentPage>
