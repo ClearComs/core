@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClearComs", "ClearComs.csproj", "{D57191BF-E726-4F43-837F-A556B07AD48C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D57191BF-E726-4F43-837F-A556B07AD48C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D57191BF-E726-4F43-837F-A556B07AD48C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D57191BF-E726-4F43-837F-A556B07AD48C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D57191BF-E726-4F43-837F-A556B07AD48C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {28F63414-F505-4F0B-A068-3E7BCB4C6FCC}
+	EndGlobalSection
+EndGlobal

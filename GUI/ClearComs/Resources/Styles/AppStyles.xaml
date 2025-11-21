@@ -272,7 +272,6 @@
         <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource DarkOnLightBackground}, Dark={StaticResource LightOnDarkBackground}}"/> 
         <Setter Property="HintLabelStyle" Value="{AppThemeBinding Light={StaticResource lightThemeLabelStyle}, Dark={StaticResource darkThemeLabelStyle}}"/> 
     </Style>
-    
 
     <Style TargetType="BoxView" x:Key="ShimmerCustomViewStyle">
         <Setter Property="BackgroundColor" Value="Gray" />
