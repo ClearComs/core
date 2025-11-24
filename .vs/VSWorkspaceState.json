@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\GUI",
+    "\\GUI\\ClearComs",
+    "\\GUI\\ClearComs\\Services"
   ],
+  "SelectedNode": "\\GUI\\ClearComs\\Services\\PhytonBackhandService.cs",
   "PreviewInSolutionExplorer": false
 }
